@@ -12,12 +12,17 @@
 
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
-            <form method="POST" action="{{ route('recetas.store') }}">
+            <form method="POST" action="{{ route('recetas.store') }}" novalidate>
                 @csrf
                 <div class="form-group">
                     <label for="titulo">Titulo de la Receta</label>
 
-                    <input type="text" name="titulo" class="form-control" id="titulo" placeholder="Titulo de la receta" />
+                    <input type="text" name="titulo" class="form-control @error('titulo') is-invalid @enderror" id="titulo" placeholder="Titulo de la receta" value="{{old('titulo')}}" />
+                    @error('titulo')
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{$message}}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Agregar Receta">
