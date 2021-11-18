@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Receta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class RecetaController extends Controller
 {
@@ -29,7 +32,9 @@ class RecetaController extends Controller
      */
     public function create()
     {
-        return view('recetas.create');
+        $categorias = DB::table('categoria_receta')->get()->pluck('nombre','id');
+
+        return view('recetas.create')->with('categorias', $categorias);
     }
 
     /**
@@ -40,12 +45,31 @@ class RecetaController extends Controller
      */
     public function store(Request $request)
     {
+        //Validacion
         $data = $request->validate([
-            'titulo' => 'required|min:3'
+            'titulo' => 'required|min:3',
+            'preparacion' => 'required',
+            'ingredientes' => 'required',
+            'imagen' => 'required|image',
+            'categoria' => 'required',
+
         ]);
 
+        $ruta_imagen = $request['imagen']->store('upload-recetas','public');
+
+        //Rezise
+        $img = Image::make(public_path("storage/{$ruta_imagen}"))->fit(1000,550);
+
+        //Almacenar en la DB sin modelo
         DB::table('recetas')->insert([
-            'titulo' => $data['titulo']
+            'titulo' => $data['titulo'],
+            'preparacion' => $data['preparacion'],
+            'ingredientes' => $data['ingredientes'],
+            'imagen' => $ruta_imagen,
+            'user_id' => Auth::user()->id,
+            'categoria_id' => $data['categoria']
+            
+            
         ]);
 
         return redirect()->action('RecetaController@index');
