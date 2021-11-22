@@ -19,6 +19,19 @@
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
+            <tbody>
+                @foreach ($recetas as  $receta)
+                    <tr>
+                        <th scope="col">{{ $receta->titulo }}</th>
+                        <th scope="col">{{ $receta->categoria -> nombre }}</th>
+                        <td>
+                            <a href="" class="btn btn-danger mr-1">Eliminar</a>
+                            <a href="" class="btn btn-dark mr-1">Editar</a>
+                            <a href="" class="btn btn-success mr-1">Ver</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
         </table>
     </div>
 
