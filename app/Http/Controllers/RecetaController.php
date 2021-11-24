@@ -69,11 +69,14 @@ class RecetaController extends Controller
 
         ]);
 
-        $ruta_imagen = $request['imagen']->store('upload-recetas','public');
+      // obtener la ruta de la imagen
+      $ruta_imagen = $request['imagen']->store('upload-recetas', 'public');
 
-        //Rezise
-        $img = Image::make(public_path("storage/{$ruta_imagen}"))->fit(1000,550);
-        $img->save();
+      // Resize de la imagen
+      $img = Image::make( public_path("storage/{$ruta_imagen}"))->fit(1000, 550);
+      $img->save();
+      
+
         //Almacenar en la DB sin modelo
         //DB::table('recetas')->insert([
             //'titulo' => $data['titulo'],

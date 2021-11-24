@@ -2,9 +2,9 @@
 
 @section('botones')
 
-    <a href="{{ route('recetas.create') }}" class="btn btn-outline-primary mr-2 text-uppercase font-weight-bold">Crear Receta</a>
-    <a href="{{ route('perfiles.edit', ['perfil' => Auth::user()->id]) }}" class="btn btn-outline-success mr-2 text-uppercase font-weight-bold">Editar Perfil</a>
-    <a href="{{ route('perfiles.show', ['perfil' => Auth::user()->id]) }}" class="btn btn-outline-info mr-2 text-uppercase font-weight-bold">Ver Perfil</a>
+    <a href="{{ route('recetas.create') }}" class="btn btn-outline-primary mr-2 text-uppercase font-weight-bold">Crear Receta <i class="fas fa-pen-square"></i></a>
+    <a href="{{ route('perfiles.edit', ['perfil' => Auth::user()->id]) }}" class="btn btn-outline-success mr-2 text-uppercase font-weight-bold">Editar Perfil <i class="fas fa-user"></i></a>
+    <a href="{{ route('perfiles.show', ['perfil' => Auth::user()->id]) }}" class="btn btn-outline-info mr-2 text-uppercase font-weight-bold">Ver Perfil <i class="far fa-eye"></i></a>
     
 @endsection
 
@@ -28,8 +28,8 @@
                         <th scope="col">{{ $receta->categoria -> nombre }}</th>
                         <td>
                             <eliminar-receta receta-id={{ $receta->id }}></eliminar-receta>
-                            <a href="{{ route('recetas.edit', ['receta' => $receta->id])}}" class="btn btn-dark d-block w-100 mb-2">Editar</a>
-                            <a href="{{ route('recetas.show', ['receta' => $receta->id]) }}" class="btn btn-success d-block w-100 mb-2">Ver</a>
+                            <a href="{{ route('recetas.edit', ['receta' => $receta->id])}}" class="btn btn-dark d-block w-100 mb-2">Editar <i class="fas fa-edit"></i></a>
+                            <a href="{{ route('recetas.show', ['receta' => $receta->id]) }}" class="btn btn-success d-block w-100 mb-2">Ver <i class="far fa-eye"></i></a>
                         </td>
                     </tr>
                 @endforeach
@@ -47,7 +47,7 @@
                 @foreach ($usuario->meGusta as $receta )
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <p>{{$receta->titulo}}</p>
-                        <a href="{{ route('recetas.show', ['receta' => $receta->id]) }}" class="btn btn-outline-success">Ver</a>
+                        <a href="{{ route('recetas.show', ['receta' => $receta->id]) }}" class="btn btn-outline-success">Ver <i class="far fa-eye"></i></a>
                     </li>                    
                 @endforeach
             </ul>

@@ -2292,8 +2292,8 @@ __webpack_require__.r(__webpack_exports__);
         text: "Una vez eliminada, no se puede recuperar",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085D6',
-        cancelButtonColor: '#D33',
+        confirmButtonColor: '#E71D36',
+        cancelButtonColor: '#FF9F1C',
         confirmButtonText: 'Si',
         cancelButtonText: 'No'
       }).then(function (result) {
