@@ -13,7 +13,7 @@
 
                <p>{{ count( $receta->likes ) }} Les gustò</p>
             </div>
-            <p>{{ Str::words( strip_tags( $nueva->preparacion),15 , '...') }}</p>
+            <p>{{ Str::words( strip_tags( $receta->preparacion),15 , '...') }}</p>
             <a href="{{ route('recetas.show', ['receta' => $receta->id]) }}" class="btn btn-primary d-block btn-receta">Ver Receta <i class="far fa-eye"></i></a>
         </div> 
     </div>    
